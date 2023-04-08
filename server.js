@@ -35,8 +35,27 @@ function createNote(body, arrayNote) {
     return note
 }
 
+//function to delete note
+function deleteNote(id, arrayNote) {
+    for (var i = 0; i < arrayNote.length; i++) {
+        let notePosition = arrayNote[i]
 
+        if (notePosition.id === id) {
+            arrayNote.splice(i, 1)
+            fs.writeFileSync(
+                path.join(__dirname, './db/db.json'),
+                JSON.stringify(arrayNote, null, 2)
+            )
 
+            break
+        }
+    }
+}
+
+app.delete('/api/notes/:id', (req,res) => {
+    deleteNote(req.params.id, notes)
+    res.json(true)
+})
 
 app.listen(PORT, () =>
     console.log(`app listening at http://localhost:${PORT}`)
