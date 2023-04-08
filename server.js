@@ -36,6 +36,11 @@ function createNote(body, arrayNote) {
     return note
 }
 
+app.post('/api/notes', (req , res) =>{
+    const newNote = createNote(req.body, notes)
+    res.json(newNote)
+})
+
 //function to delete note
 function deleteNote(id, arrayNote) {
     for (var i = 0; i < arrayNote.length; i++) {
