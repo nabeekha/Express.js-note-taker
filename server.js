@@ -1,3 +1,4 @@
+//declare initial variables for express packages and api route determination
 const express = require('express')
 const path = require('path')
 const apiRoutes = require('./routes/apiroutes')
@@ -57,6 +58,7 @@ app.delete('/api/notes/:id', (req,res) => {
     res.json(true)
 })
 
+//app.listen tells the tool to run at that specific port
 app.listen(PORT, () =>
     console.log(`app listening at http://localhost:${PORT}`)
 )
